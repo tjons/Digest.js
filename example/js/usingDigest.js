@@ -5,5 +5,5 @@
 
 	setTimeout(function(){
 		Digest.pub("write to document", Date.now());
-	}, 3000);
+	}, 3000); //setTimeout call isn't important at all, but it aids the example
 })();
