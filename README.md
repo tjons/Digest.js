@@ -17,7 +17,7 @@ Digest.sub("arrived", function (data) {
 });
 
 //Publish the "arrived" topic
-Digest.pub("arrived", "Washington, DC") 
+Digest.pub("arrived", "Washington, DC"); 
 //console.logs "the journey to Washington, DC is over"
 
 ```
