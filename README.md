@@ -2,7 +2,7 @@
 ######My first experiment writing a JS library. Light-weight, dependency-free, no-fat-no-frills Publish/Subscribe
 
 ####What is Digest.js?
-Look up. Those words describe the essence of Digest.js, but in case you haven't had your fill of buzzwords yet, Publish.js is an **open-source, light-weight, dependency-free, no-fat-no-frills Publish/Subscribe library for Javascript environments**. Digest.js should work in *any* Javascript environment, including **Node.js** (untested) and the **browser** (tested in recent Chrome). 
+Look up. Those words describe the essence of Digest.js, but in case you haven't had your fill of buzzwords yet, Digest.js is an **open-source, light-weight, dependency-free, no-fat-no-frills Publish/Subscribe library for Javascript environments**. Digest.js should work in *any* Javascript environment, including **Node.js** (untested) and the **browser** (tested in recent Chrome). 
 
 ####How can I use it?
 Simply add `Digest.js` to your HTML page, or import it with a script loader like require.js. It instantiates itself, and then attaches itself to the global variable `Digest`. Look at the [example](http://github.com/tjons/Digest.js/example) for more.
