@@ -7,6 +7,21 @@ Look up. Those words describe the essence of Digest.js, but in case you haven't 
 ####How can I use it?
 Simply add `Digest.js` to your HTML page, or import it with a script loader like require.js. It instantiates itself, and then attaches itself to the global variable `Digest`. Look at the [example](http://github.com/tjons/Digest.js/example) for more.
 
+####Usage example
+```
+//Subscribe to the "arrived" topic
+//When the topic comes in, the function
+//will be called
+Digest.sub("arrived", function (data) {
+	console.log("the journey to" + data + " is over");
+});
+
+//Publish the "arrived" topic
+Digest.pub("arrived", "Washington, DC") 
+//console.logs "the journey to Washington, DC is over"
+
+```
+
 ####Why did you write *yet another* Publish/Subscribe library for Javascript?
 
 I thought there weren't enough already. Just kidding! Seriously, I wrote Digest.js for two reasons:
