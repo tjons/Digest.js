@@ -9,13 +9,13 @@
 					if (topics[i].topic == topic) {
 						topics[i].topic.addSubscriber(callback);
 					}else{
-						var topicAdd = new this.Topic(topic);
+						var topicAdd = new TopicModel(topic);
 						topicAdd.addSubscriber(callback);
 						break;
 					}
 				}
 			}else{
-				var topicAdd = new this.Topic(topic);
+				var topicAdd = new TopicModel(topic);
 				topicAdd.addSubscriber(callback);
 			}
 		};
@@ -37,13 +37,13 @@
 			}
 		};
 
-		this.Topic = function (topic) {
+		var TopicModel = function (topic) {
 			this.subscribers = [];
 			this.topic = topic;
 			topics.push(this);
 		};
 
-		this.Topic.prototype = {
+		TopicModel.prototype = {
 			addSubscriber: function (data) {
 				this.subscribers.push(data);
 			},
