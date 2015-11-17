@@ -16,8 +16,9 @@
 
 			removeSubscriber: function (data) {
 				for (var subscriber in this.subscribers) {
-					if(subscriber == data) {
-						this.subscribers.splice(this.subscribers.indexOf(subscriber), 1);
+					if(this.subscribers[subscriber] == data) {
+						this.subscribers.splice(this.subscribers.indexOf(
+												this.subscribers[subscriber]), 1);
 						break;
 					}
 				}
@@ -52,9 +53,9 @@
 	};
 
 	Pub.prototype.unsub = function (topic, callback){
-		for (var i = 0; i <= this.topics.length; i++) {
+		for (var i = 0; i < this.topics.length; i++) {
 			if (this.topics[i].topic == topic) {
-				this.topics[i].topic.removeSubscriber(callback);
+				this.topics[i].removeSubscriber(callback);
 			}
 		}
 	};
