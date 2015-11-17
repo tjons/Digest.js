@@ -1,12 +1,46 @@
 (function () {
 
 	this.Pub = function () {
-		this.topics = [];
+		var topics = [];
 
-		this.Topic = function (scope, topic) {
+		this.sub = function (topic, callback) {
+			if(topics.length >= 1){
+				for (var i = 0; i < topics.length; i++) {
+					if (topics[i].topic == topic) {
+						topics[i].topic.addSubscriber(callback);
+					}else{
+						var topicAdd = new this.Topic(topic);
+						topicAdd.addSubscriber(callback);
+						break;
+					}
+				}
+			}else{
+				var topicAdd = new this.Topic(topic);
+				topicAdd.addSubscriber(callback);
+			}
+		};
+
+		this.unsub = function (topic, callback){
+			for (var i = 0; i < topics.length; i++) {
+				if (topics[i].topic == topic) {
+					topics[i].removeSubscriber(callback);
+				}
+			}
+		};
+
+		this.pub = function (topic, data){
+			for (var i = 0; i < topics.length; i++) {
+				if(topics[i].topic == topic) {
+					var topicModel = topics[i];
+					topicModel.publishToSubscribers(data);
+				}
+			}
+		};
+
+		this.Topic = function (topic) {
 			this.subscribers = [];
 			this.topic = topic;
-			scope.topics.push(this);
+			topics.push(this);
 		};
 
 		this.Topic.prototype = {
@@ -32,42 +66,8 @@
 				}
 			},
 		};
-
 	};
 
-	Pub.prototype.sub = function (topic, callback) {
-		if(this.topics.length >= 1){
-			for (var i = 0; i < this.topics.length; i++) {
-				if (this.topics[i].topic == topic) {
-					this.topics[i].topic.addSubscriber(callback);
-				}else{
-					var topicAdd = new this.Topic(this, topic);
-					topicAdd.addSubscriber(callback);
-					break;
-				}
-			}
-		}else{
-			var topicAdd = new this.Topic(this, topic);
-			topicAdd.addSubscriber(callback);
-		}
-	};
-
-	Pub.prototype.unsub = function (topic, callback){
-		for (var i = 0; i < this.topics.length; i++) {
-			if (this.topics[i].topic == topic) {
-				this.topics[i].removeSubscriber(callback);
-			}
-		}
-	};
-
-	Pub.prototype.pub = function (topic, data){
-		for (var i = 0; i < this.topics.length; i++) {
-			if(this.topics[i].topic == topic) {
-				var topicModel = this.topics[i];
-				topicModel.publishToSubscribers(data);
-			}
-		}
-	};
 	Digest = new this.Pub();
 	return Digest;
 })();
